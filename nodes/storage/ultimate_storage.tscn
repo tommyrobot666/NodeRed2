@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfjm0s4dg2srp"]
+
+[ext_resource type="Script" path="res://nodes/storage/Storage.gd" id="1_tgiq7"]
+[ext_resource type="Texture2D" uid="uid://duh5uqw1g6ghm" path="res://nodes/mineable/godot/Godot Material Icon.png" id="2_oa26t"]
+
+[node name="Ultimate Storage" type="GraphNode"]
+offset_left = 265.0
+offset_top = 52.0
+offset_right = 559.0
+offset_bottom = 268.0
+mouse_filter = 1
+position_offset = Vector2(265, 52)
+title = "Ultimate Storage"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("1_tgiq7")
+max_storage = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Remove Item" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Remove Item"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Auto Dump" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Auto Dump"
+
+[node name="Auto Store" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Auto Store"
+
+[node name="Full" type="ProgressBar" parent="."]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+auto_height = true
+item_count = 1
+max_columns = 5
+item_0/text = ""
+item_0/icon = ExtResource("2_oa26t")
+
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]
+[connection signal="pressed" from="HBoxContainer/Remove Item" to="." method="_on_remove_item_pressed"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/Auto Dump" to="." method="_on_auto_dump_toggled"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/Auto Store" to="." method="_on_auto_store_toggled"]

@@ -1,0 +1,168 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkk3dbd8dantk"]
+
+[ext_resource type="Script" path="res://graph/Graph.gd" id="1_7af3j"]
+[ext_resource type="Theme" uid="uid://cyvch7sgqk1g2" path="res://new_theme.tres" id="1_ts8p6"]
+[ext_resource type="Script" path="res://graph/side/ShopPanel.gd" id="2_73ydv"]
+[ext_resource type="PackedScene" uid="uid://das33inxvgxl1" path="res://nodes/mineable/godot/godot_material.tscn" id="3_5l5cj"]
+[ext_resource type="PackedScene" uid="uid://bijhka74jjkna" path="res://nodes/miners/godot_miner.tscn" id="4_ke41q"]
+[ext_resource type="PackedScene" uid="uid://dfjm0s4dg2srp" path="res://nodes/storage/ultimate_storage.tscn" id="5_7r0py"]
+[ext_resource type="Script" path="res://graph/GraphArea.gd" id="8_2xexx"]
+[ext_resource type="Script" path="res://graph/side/MaterialsSidebar.gd" id="8_iapm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d031n"]
+
+[node name="Node red" type="Node"]
+metadata/_edit_vertical_guides_ = []
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ts8p6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopPanel" type="PanelContainer" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_73ydv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer/ShopPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer/ShopPanel/VBoxContainer"]
+layout_mode = 2
+text = "SHOP"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer/ShopPanel/VBoxContainer"]
+layout_mode = 2
+columns = 1024
+
+[node name="GraphEdit" type="GraphEdit" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+show_grid = false
+snapping_enabled = false
+right_disconnects = true
+minimap_enabled = false
+show_grid_buttons = false
+show_arrange_button = false
+script = ExtResource("1_7af3j")
+
+[node name="Godot Miner" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" instance=ExtResource("4_ke41q")]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 171.0
+offset_right = 245.0
+offset_bottom = 280.0
+position_offset = Vector2(78, 171)
+
+[node name="Ultimate Storage" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" instance=ExtResource("5_7r0py")]
+layout_mode = 0
+
+[node name="Godot Material" parent="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" instance=ExtResource("3_5l5cj")]
+layout_mode = 0
+offset_left = 71.995
+offset_right = 199.995
+position_offset = Vector2(71.995, 0)
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MaterialsSidebar" type="VBoxContainer" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_iapm2")
+
+[node name="RequriementsForNextLevel" type="RichTextLabel" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/Panel/MaterialsSidebar"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=#AAAAEE]Blue Metal:[/color] [color=#FFAA0F]20/85[/color], [color=#FFAA99]STUFF:[/color] [color=#99CC0F]2/3[/color]"
+fit_content = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/Panel/MaterialsSidebar"]
+layout_mode = 2
+value = 42.1
+
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/Panel/MaterialsSidebar"]
+layout_mode = 2
+
+[node name="NodeRedDemandsMore" type="RichTextLabel" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/Panel/MaterialsSidebar"]
+layout_mode = 2
+bbcode_enabled = true
+text = "You receve another request from The Red Node, it's a list of materials.
+
+[color=#AAAAAA]You encounter a strange red node in your systems. It sends a 9999... priority power request[/color]"
+fit_content = true
+
+[node name="TabContainer" type="TabContainer" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Achivements" type="VBoxContainer" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/TabContainer/Achivements"]
+layout_mode = 2
+text = "OTHER THINGS LIKE SETTINGS, ACHEVEMRNTS,IDK"
+
+[node name="Shop" type="VBoxContainer" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/TabContainer/Shop"]
+layout_mode = 2
+text = "OTHER THINGS LIKE SETTINGS, ACHEVEMRNTS,IDK"
+
+[node name="Settings" type="VBoxContainer" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer/HSplitContainer/PanelContainer2/VSplitContainer/TabContainer/Settings"]
+layout_mode = 2
+text = "OTHER THINGS LIKE SETTINGS, ACHEVEMRNTS,IDK"
+
+[node name="GraphArea" type="Area2D" parent="."]
+position = Vector2(0, 89)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("8_2xexx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GraphArea"]
+shape = SubResource("RectangleShape2D_d031n")
+debug_color = Color(0.839216, 0.6, 0.701961, 0.419608)
+
+[connection signal="connection_request" from="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" to="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" method="_on_connection_request"]
+[connection signal="disconnection_request" from="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" to="Control/VBoxContainer/HSplitContainer/VBoxContainer/GraphEdit" method="_on_disconnection_request"]

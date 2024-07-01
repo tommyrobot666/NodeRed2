@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://das33inxvgxl1"]
+
+[ext_resource type="Texture2D" uid="uid://cahnpbbahcx6j" path="res://nodes/mineable/godot/Godot Material.png" id="1_bl0b2"]
+[ext_resource type="PackedScene" uid="uid://bm45pdpd3085a" path="res://nodes/mineable/material.tscn" id="2_lev3q"]
+
+[node name="Godot Material" type="GraphElement"]
+offset_right = 128.0
+offset_bottom = 128.0
+draggable = false
+selectable = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_bl0b2")
+
+[node name="Material" parent="." instance=ExtResource("2_lev3q")]
+type = "Godot"
